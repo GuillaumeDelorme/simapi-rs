@@ -10,11 +10,12 @@ authors.workspace = true
 
 [features]
 default = []
-serde = ["dep:serde"]
+serde = ["dep:serde", "dep:serde_arrays"]
 
 [dependencies]
 libc = "0.2"
 serde = { version = "1", features = ["derive"], optional = true }
+serde_arrays = { version = "0.2", optional = true }
 simapi-sys = { path = "../simapi-sys" }
 thiserror = "2.0"
 

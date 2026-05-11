@@ -210,6 +210,7 @@ pub struct TelemetrySnapshot {
     pub driver: String,
     pub tyre_compound: String,
 
+    #[cfg_attr(feature = "serde", serde(with = "serde_arrays"))]
     pub cars: [CarData; MAX_CARS],
     pub proximity: [ProximityData; PROXIMITY_CARS],
 
