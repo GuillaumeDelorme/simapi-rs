@@ -3,8 +3,6 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const UPSTREAM_TAG: &str = "0.1.12";
-
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=wrapper.h");
@@ -20,11 +18,9 @@ fn main() {
 
     assert!(
         simapi_src.exists(),
-        "simapi source not found at {}. Did you run `git submodule update --init --recursive`?",
+        "simapi source not found at {}",
         simapi_src.display()
     );
-
-    verify_pinned_tag(&simapi_src);
 
     let dst = cmake::Config::new(&simapi_src).profile("Release").build();
 
@@ -90,28 +86,4 @@ fn main() {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("failed to write bindings.rs");
-}
-
-fn verify_pinned_tag(simapi_src: &Path) {
-    let output = std::process::Command::new("git")
-        .args(["describe", "--tags", "--exact-match"])
-        .current_dir(simapi_src)
-        .output();
-
-    match output {
-        Ok(output) if output.status.success() => {
-            let tag = String::from_utf8_lossy(&output.stdout).trim().to_owned();
-
-            if tag != UPSTREAM_TAG {
-                panic!(
-                    "third_party/simapi is checked out at tag `{tag}`, expected `{UPSTREAM_TAG}`"
-                );
-            }
-        }
-        _ => {
-            panic!(
-                "third_party/simapi is not checked out at an exact tag. Expected `{UPSTREAM_TAG}`"
-            );
-        }
-    }
 }
