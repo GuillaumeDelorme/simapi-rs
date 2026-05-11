@@ -20,6 +20,14 @@ Add the crate:
 simapi = "0.1.0"
 ```
 
+Enable serde support when you want to serialize or deserialize telemetry
+snapshots:
+
+```toml
+[dependencies]
+simapi = { version = "0.1.0", features = ["serde"] }
+```
+
 Read the current telemetry snapshot:
 
 ```rust,no_run
@@ -59,6 +67,10 @@ fn main() -> simapi::Result<()> {
 ```
 
 If you need the raw generated bindings, use `simapi-sys`. If you are building a normal Rust application, `simapi` is the crate you probably want.
+
+With the `serde` feature enabled, `TelemetrySnapshot` and the snapshot-related
+public types it contains implement `serde::Serialize` and
+`serde::Deserialize`.
 
 ## Example
 

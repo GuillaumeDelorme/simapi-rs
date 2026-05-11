@@ -9,6 +9,7 @@ const MAX_CARS: usize = ffi::MAXCARS as usize;
 const PROXIMITY_CARS: usize = ffi::PROXCARS as usize;
 
 /// Per-car data taken from the upstream `CarData` entry.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone)]
 pub struct CarData {
     /// World X position.
@@ -75,6 +76,7 @@ impl CarData {
 }
 
 /// Nearby car information from the upstream proximity array.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct ProximityData {
     /// Distance to the nearby car.
@@ -99,6 +101,7 @@ impl ProximityData {
 ///
 /// Field names stay close to the original C API on purpose so it is easy to
 /// compare values with upstream simapi documentation, bindings, and tools.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone)]
 pub struct TelemetrySnapshot {
     /// Current millisecond tick.

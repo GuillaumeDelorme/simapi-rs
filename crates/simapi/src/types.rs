@@ -1,6 +1,7 @@
 use simapi_sys as ffi;
 
 /// Current simulator/session state reported by simapi.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum SessionStatus {
     /// No simulator session is available.
@@ -30,6 +31,7 @@ impl SessionStatus {
 }
 
 /// Gear position reported by simapi.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Gear {
     /// Reverse gear.
@@ -71,6 +73,7 @@ impl Gear {
 }
 
 /// Race/session flag state.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RaceFlag {
     /// Green flag.
@@ -116,6 +119,7 @@ impl RaceFlag {
 }
 
 /// Simple lap time representation used by simapi.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct LapTime {
     /// Hour component.

@@ -8,8 +8,13 @@ keywords.workspace = true
 repository.workspace = true
 authors.workspace = true
 
+[features]
+default = []
+serde = ["dep:serde"]
+
 [dependencies]
 libc = "0.2"
+serde = { version = "1", features = ["derive"], optional = true }
 simapi-sys = { path = "../simapi-sys" }
 thiserror = "2.0"
 
