@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "crates/simapi",
     "crates/simapi-sys",
 ]
 resolver = "3"

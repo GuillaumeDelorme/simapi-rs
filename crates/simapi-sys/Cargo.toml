@@ -10,5 +10,5 @@ repository.workspace = true
 authors.workspace = true
 
 [build-dependencies]
-bindgen = "0.72.1"
-cmake = "0.1.58"
+bindgen = "0.72"
+cmake = "0.1"
