@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "crates/simapi-sys",
+]
+resolver = "3"
+
+[workspace.package]
+edition = "2024"
+authors = ["Guillaume Delorme <guillaume@delorme.dev>"]
+license = "MIT OR Apache-2.0"
+keywords = ["simracing", "simulation", "simapi", "telemetry"]
+repository = "https://github.com/GuillaumeDelorme/simapi-rs"
+readme = "README.md"
