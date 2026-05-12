@@ -1,5 +1,10 @@
 # simapi-rs
 
+[![License](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)](https://github.com/GuillaumeDelorme/simapi-rs#license)
+[![Crates.io](https://img.shields.io/crates/v/simapi.svg)](https://crates.io/crates/simapi)
+[![Downloads](https://img.shields.io/crates/d/simapi.svg)](https://crates.io/crates/simapi)
+[![Docs](https://docs.rs/simapi/badge.svg)](https://docs.rs/simapi/latest/simapi/)
+
 Rust bindings for [simapi](https://github.com/Spacefreak18/simapi).
 
 This workspace currently contains:
