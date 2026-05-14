@@ -17,7 +17,7 @@ serde = ["dep:serde", "dep:serde_arrays"]
 libc = "0.2"
 serde = { version = "1", features = ["derive"], optional = true }
 serde_arrays = { version = "0.2", optional = true }
-simapi-sys = { path = "../simapi-sys" }
+simapi-sys = { version = "0.1.0", path = "../simapi-sys" }
 thiserror = "2.0"
 
 [dev-dependencies]
