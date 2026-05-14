@@ -1,20 +1,13 @@
-use std::{
-    env,
-    path::{Path, PathBuf},
-};
+use std::{env, path::PathBuf};
 
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=wrapper.h");
+    println!("cargo:rerun-if-changed=third_party/simapi");
 
     let manifest_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
-    let workspace_root = manifest_dir
-        .parent()
-        .and_then(Path::parent)
-        .expect("crates/simapi-sys should be under workspace/crates")
-        .to_path_buf();
 
-    let simapi_src = workspace_root.join("third_party/simapi");
+    let simapi_src = manifest_dir.join("third_party/simapi");
 
     assert!(
         simapi_src.exists(),
