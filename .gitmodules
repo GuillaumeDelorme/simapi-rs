@@ -1,3 +1,3 @@
-[submodule "third_party/simapi"]
+[submodule "crates/simapi-sys/third_party/simapi"]
 	path = crates/simapi-sys/third_party/simapi
 	url = https://github.com/Spacefreak18/simapi
