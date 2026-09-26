@@ -22,7 +22,7 @@ Add the crate:
 
 ```toml
 [dependencies]
-simapi = "0.1.0"
+simapi = "0.2.0"
 ```
 
 Enable serde support when you want to serialize or deserialize telemetry
@@ -30,7 +30,7 @@ snapshots:
 
 ```toml
 [dependencies]
-simapi = { version = "0.1.0", features = ["serde"] }
+simapi = { version = "0.2.0", features = ["serde"] }
 ```
 
 Read the current telemetry snapshot:
