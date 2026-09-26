@@ -15,30 +15,36 @@ fn main() {
         simapi_src.display()
     );
 
-    let dst = cmake::Config::new(&simapi_src).profile("Release").build();
+    let docs_rs = env::var_os("DOCS_RS").is_some();
 
-    let include_dirs = [
-        simapi_src.join("simapi"),
-        simapi_src.join("include"),
-        dst.join("include"),
-    ];
+    let mut include_dirs = vec![simapi_src.join("simapi"), simapi_src.join("include")];
 
-    // CMake usually installs libraries into either lib or lib64.
-    let lib_dirs = [dst.join("lib"), dst.join("lib64")];
+    if !docs_rs {
+        let mut config = cmake::Config::new(&simapi_src);
 
-    for dir in &lib_dirs {
-        if dir.exists() {
-            println!("cargo:rustc-link-search=native={}", dir.display());
+        config.profile("Release").define("BUILD_SIMD", "OFF");
+
+        let dst = config.build();
+
+        include_dirs.push(dst.join("include"));
+
+        // CMake usually installs libraries into either lib or lib64.
+        let lib_dirs = [dst.join("lib"), dst.join("lib64")];
+
+        for dir in &lib_dirs {
+            if dir.exists() {
+                println!("cargo:rustc-link-search=native={}", dir.display());
+            }
         }
+
+        // Upstream library name is expected to be libsimapi.{so,a}.
+        println!("cargo:rustc-link-lib=simapi");
+
+        // On Linux, simapi uses POSIX APIs. These may be needed depending on how
+        // the upstream CMake links things.
+        println!("cargo:rustc-link-lib=dl");
+        println!("cargo:rustc-link-lib=pthread");
     }
-
-    // Upstream library name is expected to be libsimapi.{so,a}.
-    println!("cargo:rustc-link-lib=simapi");
-
-    // On Linux, simapi uses POSIX APIs. These may be needed depending on how
-    // the upstream CMake links things.
-    println!("cargo:rustc-link-lib=dl");
-    println!("cargo:rustc-link-lib=pthread");
 
     let mut builder = bindgen::Builder::default()
         .header("wrapper.h")
