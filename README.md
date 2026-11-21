@@ -16,13 +16,16 @@ The safe crate follows the same discovery and mapping flow as the upstream C too
 
 **Note:** this project only work on Linux.
 
+Building from source requires the development libraries for libproc2,
+libmosquitto, json-c, and libconfig, plus CMake, pkg-config, and libclang.
+
 ## Basic usage
 
 Add the crate:
 
 ```toml
 [dependencies]
-simapi = "0.2.0"
+simapi = "0.3.0"
 ```
 
 Enable serde support when you want to serialize or deserialize telemetry
@@ -30,7 +33,7 @@ snapshots:
 
 ```toml
 [dependencies]
-simapi = { version = "0.2.0", features = ["serde"] }
+simapi = { version = "0.3.0", features = ["serde"] }
 ```
 
 Read the current telemetry snapshot:
